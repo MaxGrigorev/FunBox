@@ -125,7 +125,7 @@ handleKeyPress = (event) => {
 	
 handleChange=(event)=> {
     this.setState({value: event.target.value});
-	console.log('handleChange! ')
+	console.log('handleChange')
 	
   }
 
