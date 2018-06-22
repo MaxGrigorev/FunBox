@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import MapContainer from './MapComponent.jsx'
 
 // fake data generator
 //const getItems = count =>
@@ -103,12 +104,16 @@ class App extends Component {
           )}
         </Droppable>
       </DragDropContext>
+
+	  <MapContainer/>
       </div>
     );
   }
 
+
+//input
 handleKeyPress = (event) => {
-  if(event.key == 'Enter'){
+  if(event.key === 'Enter'){
     console.log('enter press here! ',this.state.items.length)
 	  
 	let nextItem={}
