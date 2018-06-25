@@ -3,19 +3,14 @@ import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import MapContainer from './MapComponent.jsx'
 
-// fake data generator
-//const getItems = count =>
-//  Array.from({ length: count }, (v, k) => k).map(k => ({
-//    id: `item-${k}`,
-//    content: `item ${k}`,
-//  }));
-
-// a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
+	console.log ('list ',list)
+	console.log ('result ',result)
+	console.log ('startIndex ',startIndex)
+	console.log ('endIndex ',endIndex)
   return result;
 };
 
@@ -46,6 +41,7 @@ class App extends Component {
     this.state = {
       	items: [],//getItems(10),
 		value: '',//value input
+		mapCenter: {lat: 40.854885,lng: -88.081807},
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 	this.handleChange = this.handleChange.bind(this);//handler input 
@@ -105,7 +101,7 @@ class App extends Component {
         </Droppable>
       </DragDropContext>
 
-	  <MapContainer/>
+	  <MapContainer markers={this.state.items} centr={this.centerChangeMap} markerDrag={this.markerDraggen}/>
       </div>
     );
   }
@@ -119,12 +115,13 @@ handleKeyPress = (event) => {
 	let nextItem={}
 	nextItem.id=this.state.items.length
 	nextItem.content=this.state.value
+	nextItem.position=this.state.mapCenter
 	  
-	console.log(nextItem)
-	
-	let ite=this.state.items
-	ite[nextItem.id]=nextItem
-	this.setState({items: ite})
+	console.log('nextItem ',nextItem)
+	//this.state.items[this.state.items.length]=nextItem
+	this.state.items.push(nextItem)
+	 this.setState({items: this.state.items})
+	console.log('this.state.items ',this.state.items)
   }
 }
 	
@@ -133,6 +130,24 @@ handleChange=(event)=> {
 	console.log('handleChange')
 	
   }
+
+//callback из MapComponent
+centerChangeMap=(mapProps, map)=>{
+    this.setState({
+		mapCenter:
+			{
+				lat: map.center.lat(),
+				lng: map.center.lng()
+			}
+	});
+	console.log("centerMoved ", this.state.mapCenter)
+
+  }
+
+markerDraggen(prop,marker) {
+		console.log("markerDraggen", {lat:marker.position.lat(),lng:marker.position.lng()})
+		console.log("markerDraggen", prop)
+	}
 
 }
 
