@@ -144,9 +144,13 @@ centerChangeMap=(mapProps, map)=>{
 
   }
 
-markerDraggen(prop,marker) {
+markerDraggen=(prop,marker)=> {
 		console.log("markerDraggen", {lat:marker.position.lat(),lng:marker.position.lng()})
 		console.log("markerDraggen", prop)
+	console.log("this.state.items[prop.id]", this.state.items)
+	let index = this.state.items.findIndex(el => el.id === prop.id);
+		this.state.items[index].position={lat:marker.position.lat(),lng:marker.position.lng()}
+		this.setState({items: this.state.items})
 	}
 
 }
