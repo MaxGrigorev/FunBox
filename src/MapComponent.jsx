@@ -53,7 +53,7 @@ export class MapContainer extends Component {
 
 		console.log('markers', markers)
 
-		return (
+		return (<div className='map'>
 				<Map google={ this.props.google} zoom={ 14 } onClick={this.onMapClicked} initialCenter={{
             lat: 40.854885,
             lng: -88.081807
@@ -83,7 +83,7 @@ export class MapContainer extends Component {
       />
 
 				</Map>
-
+			</div>
 
 
 		);

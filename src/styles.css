@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.map {
+	position: relative;
+    width: 500px;
+    height: 500px;
+}
+

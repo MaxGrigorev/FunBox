@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import MapContainer from './MapComponent.jsx'
+import './styles.css';
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -68,11 +69,11 @@ class App extends Component {
     });
   }
 
-  // Normally you would want to split things out into separate components.
-  // But in this example everything is just done in one place for simplicity
+
   render() {
     return (
-	<div>
+	<div className='container'>
+	<div className='list'>
 	<input type="text" value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -109,7 +110,7 @@ class App extends Component {
           )}
         </Droppable>
       </DragDropContext>
-
+</div>
 	  <MapContainer markers={this.state.items} centr={this.centerChangeMap} markerDrag={this.markerDraggen}/>
       </div>
     );
