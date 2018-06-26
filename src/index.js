@@ -36,12 +36,16 @@ const getListStyle = isDraggingOver => ({
 });
 
 class App extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
       	items: [],//getItems(10),
 		value: '',//value input
 		mapCenter: {lat: 40.854885,lng: -88.081807},
+		count:0,
+
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 	this.handleChange = this.handleChange.bind(this);//handler input 
@@ -91,6 +95,11 @@ class App extends Component {
                       )}
                     >
                       {item.content}
+
+						<button onClick={this.onButtonClick(item.id)} className = "">
+								Delete
+							</button>
+
                     </div>
                   )}
                 </Draggable>
@@ -109,14 +118,16 @@ class App extends Component {
 
 //input
 handleKeyPress = (event) => {
+
   if(event.key === 'Enter'){
     console.log('enter press here! ',this.state.items.length)
 	  
 	let nextItem={}
-	nextItem.id=this.state.items.length
+	//nextItem.id=this.state.items.length
+	nextItem.id=this.state.count
 	nextItem.content=this.state.value
 	nextItem.position=this.state.mapCenter
-	  
+	 this.setState({count: this.state.count+1})
 	console.log('nextItem ',nextItem)
 	//this.state.items[this.state.items.length]=nextItem
 	this.state.items.push(nextItem)
@@ -129,6 +140,16 @@ handleChange=(event)=> {
     this.setState({value: event.target.value});
 	console.log('handleChange')
 	
+  }
+
+onButtonClick=(butid)=>(event)=> {
+    //this.setState({value: event.target.value});
+	console.log('onButtonClick',event.target)
+	console.log('onButtonClick',butid)
+	let index = this.state.items.findIndex(el => el.id === butid);
+	this.state.items.splice(index,1)
+	this.setState({items: this.state.items})
+
   }
 
 //callback из MapComponent
