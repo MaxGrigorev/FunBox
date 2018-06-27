@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import MapContainer from './MapComponent.jsx'
-import './styles.css';
+//import './styles.css';
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -24,10 +24,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
-
-  // styles we need to apply on draggables
-  ...draggableStyle,
+  background: isDragging ? 'lightgreen' : 'grey',...draggableStyle,
 });
 
 const getListStyle = isDraggingOver => ({
@@ -49,7 +46,7 @@ class App extends Component {
 
     };
     this.onDragEnd = this.onDragEnd.bind(this);
-	this.handleChange = this.handleChange.bind(this);//handler input 
+	this.handleChange = this.handleChange.bind(this);//handler input
   }
 
   onDragEnd(result) {
@@ -82,7 +79,7 @@ class App extends Component {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
             >
-			
+
               {this.state.items.length && this.state.items.map((item, index) => (
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided, snapshot) => (
@@ -122,7 +119,7 @@ handleKeyPress = (event) => {
 
   if(event.key === 'Enter'){
     console.log('enter press here! ',this.state.items.length)
-	  
+
 	let nextItem={}
 	//nextItem.id=this.state.items.length
 	nextItem.id=this.state.count
@@ -136,11 +133,11 @@ handleKeyPress = (event) => {
 	console.log('this.state.items ',this.state.items)
   }
 }
-	
+
 handleChange=(event)=> {
     this.setState({value: event.target.value});
 	console.log('handleChange')
-	
+
   }
 
 onButtonClick=(butid)=>(event)=> {
@@ -177,5 +174,7 @@ markerDraggen=(prop,marker)=> {
 
 }
 
+export default App
 // Put the thing into the DOM!
-ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<App />, document.getElementById('root'));
+
