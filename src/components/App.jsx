@@ -30,7 +30,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
   padding: grid,
-  width: 250,
+  //width: 250,
 });
 
 class App extends Component {
@@ -70,46 +70,49 @@ class App extends Component {
   render() {
     return (
 	<div className='container'>
-	<div className='list'>
-	<input type="text" value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
+		<div className='row1'>
+			<div className='list'>
+				<input type="text" className='text' value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
+				<DragDropContext onDragEnd={this.onDragEnd}>
+					<Droppable droppableId="droppable">
+					  {(provided, snapshot) => (
+						<div
+						  ref={provided.innerRef}
+						  style={getListStyle(snapshot.isDraggingOver)}
+						>
 
-              {this.state.items.length && this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      {item.content}
+						  {(this.state.items.length!==0) && this.state.items.map((item, index) => (
+							<Draggable key={item.id} draggableId={item.id} index={index}>
+							  {(provided, snapshot) => (
+								<div
+								  ref={provided.innerRef}
+								  {...provided.draggableProps}
+								  {...provided.dragHandleProps}
+								  style={getItemStyle(
+									snapshot.isDragging,
+									provided.draggableProps.style
+								  )}
+								>
+								  {item.content}
 
-						<button onClick={this.onButtonClick(item.id)} className = "">
-								Delete
-							</button>
+									<button onClick={this.onButtonClick(item.id)} className = "">
+											Delete
+										</button>
 
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-</div>
-	  <MapContainer markers={this.state.items} centr={this.centerChangeMap} markerDrag={this.markerDraggen}/>
-      </div>
+								</div>
+							  )}
+							</Draggable>
+						  ))}
+						  {provided.placeholder}
+						</div>
+					  )}
+					</Droppable>
+				</DragDropContext>
+			</div>
+
+			<MapContainer markers={this.state.items} centr={this.centerChangeMap} markerDrag={this.markerDraggen}/>
+		</div>
+	</div>
     );
   }
 
