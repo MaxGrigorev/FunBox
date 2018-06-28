@@ -769,7 +769,7 @@ exports = module.exports = __webpack_require__(52)(false);
 
 
 // module
-exports.push([module.i, "* {\n    box-sizing: border-box;\n}\n\n/*\n.container {\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n}\n*/\n\n.map {\n\tposition: relative;\nheight: 100vh;\n    \n\t\n\t\n}\n\n/*\n.row>div:nth-child(2) {\n\tborder: 2px solid black;\n\twidth: 100%;\n}\n*/\n\n.row1>div:nth-child(2) {\n\tborder: 2px solid black;\n\twidth: 100%;\n\tmargin-left: 20px;\n\t\n}\n\n.row1{\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n}\n\n.text{\n\twidth: 100%;\n}", ""]);
+exports.push([module.i, "* {\n    box-sizing: border-box;\n}\n\n/*\n.container {\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n}\n*/\n\n.map {\n\tposition: relative;\nheight: 100vh;\n\n\n\n}\n\n/*\n.row>div:nth-child(2) {\n\tborder: 2px solid black;\n\twidth: 100%;\n}\n*/\n\n.row1>div:nth-child(2) {\n\tborder: 2px solid black;\n\twidth: 100%;\n\tmargin-left: 20px;\n\n}\n\n.row1{\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n}\n\n.text{\n\tmargin: 10px 0;\n\twidth: 100%;\n}\n\n.list{\n\twidth: 400px;\n}\n\n.item{\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n\talign-items: center;\n\theight: 100%;\n}", ""]);
 
 // exports
 

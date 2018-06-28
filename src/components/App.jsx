@@ -20,8 +20,9 @@ const grid = 8;
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  padding: grid * 2,
+  padding: `0 16px`,
   margin: `0 0 ${grid}px 0`,
+height: 56,
 
   // change background colour if dragging
   background: isDragging ? 'lightgreen' : 'grey',...draggableStyle,
@@ -29,7 +30,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
+  padding: 0,
+
   //width: 250,
 });
 
@@ -72,7 +74,7 @@ class App extends Component {
 	<div className='container'>
 		<div className='row1'>
 			<div className='list'>
-				<input type="text" className='text' value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
+				<input type="text" className='text' value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleChange} placeholder="Введи название точки"/>
 				<DragDropContext onDragEnd={this.onDragEnd}>
 					<Droppable droppableId="droppable">
 					  {(provided, snapshot) => (
@@ -93,12 +95,12 @@ class App extends Component {
 									provided.draggableProps.style
 								  )}
 								>
-								  {item.content}
-
-									<button onClick={this.onButtonClick(item.id)} className = "">
+							  		<div className ="item">
+							  			<div className ="item-content">{item.content}</div>
+							  			<button onClick={this.onButtonClick(item.id)} className = "btn btn-primary float-right">
 											Delete
 										</button>
-
+							  		</div>
 								</div>
 							  )}
 							</Draggable>
@@ -134,6 +136,7 @@ handleKeyPress = (event) => {
 	this.state.items.push(nextItem)
 	 this.setState({items: this.state.items})
 	console.log('this.state.items ',this.state.items)
+	this.setState({value: ""})
   }
 }
 

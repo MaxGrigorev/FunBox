@@ -22661,8 +22661,9 @@ var getItemStyle = function getItemStyle(isDragging, draggableStyle) {
 	return _extends({
 		// some basic styles to make the items look a bit nicer
 		userSelect: 'none',
-		padding: grid * 2,
+		padding: '0 16px',
 		margin: '0 0 ' + grid + 'px 0',
+		height: 56,
 
 		// change background colour if dragging
 		background: isDragging ? 'lightgreen' : 'grey' }, draggableStyle);
@@ -22671,7 +22672,8 @@ var getItemStyle = function getItemStyle(isDragging, draggableStyle) {
 var getListStyle = function getListStyle(isDraggingOver) {
 	return {
 		background: isDraggingOver ? 'lightblue' : 'lightgrey',
-		padding: grid
+		padding: 0
+
 		//width: 250,
 	};
 };
@@ -22700,6 +22702,7 @@ var App = function (_Component) {
 				_this.state.items.push(nextItem);
 				_this.setState({ items: _this.state.items });
 				console.log('this.state.items ', _this.state.items);
+				_this.setState({ value: "" });
 			}
 		};
 
@@ -22782,7 +22785,7 @@ var App = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'list' },
-						_react2.default.createElement('input', { type: 'text', className: 'text', value: this.state.value, onKeyPress: this.handleKeyPress, onChange: this.handleChange }),
+						_react2.default.createElement('input', { type: 'text', className: 'text', value: this.state.value, onKeyPress: this.handleKeyPress, onChange: this.handleChange, placeholder: '\u0412\u0432\u0435\u0434\u0438 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0442\u043E\u0447\u043A\u0438' }),
 						_react2.default.createElement(
 							_reactBeautifulDnd.DragDropContext,
 							{ onDragEnd: this.onDragEnd },
@@ -22808,11 +22811,19 @@ var App = function (_Component) {
 														}, provided.draggableProps, provided.dragHandleProps, {
 															style: getItemStyle(snapshot.isDragging, provided.draggableProps.style)
 														}),
-														item.content,
 														_react2.default.createElement(
-															'button',
-															{ onClick: _this2.onButtonClick(item.id), className: '' },
-															'Delete'
+															'div',
+															{ className: 'item' },
+															_react2.default.createElement(
+																'div',
+																{ className: 'item-content' },
+																item.content
+															),
+															_react2.default.createElement(
+																'button',
+																{ onClick: _this2.onButtonClick(item.id), className: 'btn btn-primary float-right' },
+																'Delete'
+															)
 														)
 													);
 												}

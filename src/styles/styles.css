@@ -39,5 +39,18 @@ height: 100vh;
 }
 
 .text{
+	margin: 10px 0;
 	width: 100%;
+}
+
+.list{
+	width: 400px;
+}
+
+.item{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
 }
