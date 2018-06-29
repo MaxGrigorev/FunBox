@@ -1,53 +1,36 @@
-* {
-    box-sizing: border-box;
-}
+@import "~bootstrap/scss/bootstrap";
 
-/*
-.container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+* {
+	box-sizing: border-box;
 }
-*/
 
 .map {
 	position: relative;
-height: 100vh;
-
-
-
+	height: 100vh;
 }
 
-/*
-.row>div:nth-child(2) {
-	border: 2px solid black;
-	width: 100%;
-}
-*/
-
-.row1>div:nth-child(2) {
+.row1 > div:nth-child(2) {
 	border: 2px solid black;
 	width: 100%;
 	margin-left: 20px;
-
 }
 
-.row1{
+.row1 {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.text{
+.text {
 	margin: 10px 0;
 	width: 100%;
 }
 
-.list{
+.list {
 	width: 400px;
 }
 
-.item{
+.item {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

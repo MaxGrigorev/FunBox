@@ -1,20 +1,46 @@
-var path = require('path');
-var webpack = require('webpack');
+//var
+const path = require("path")
+const webpack = require("webpack")
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+//plagins
+const ExtractTextPlagin = require("extract-text-webpack-plugin")
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
+const ImageminPlugin = require("imagemin-webpack-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin")
+
+//module
 module.exports = {
-  entry: {
-        vendors: path.join(__dirname, 'src', 'vendors.jsx'),
-        app: path.join(__dirname, 'src', 'index.jsx')
-    },
-  output: {
-    path: path.join(__dirname,'dist'),
-    filename: '[name].js',
-	library:'lib',
-  },
+	//base way
+	context: path.resolve(__dirname, 'src'),
+	//entry js
+	entry: {
+		app: [
+			'./js/app.js',
+			'./scss/style.scss',
+		],
+	},
+
+	//dist
+	output: {
+		filename: 'js/[name].js',
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '../',
+		library:'lib',
+	},
+
+	//dev-server
+	devServer: {
+		contentBase: './app',
+		//compress: true,
+		//port: 9000,
+	},
+
 	module: {
-		rules: [{
-			test: /\.jsx$/,
+		rules: [
+			{
+			test: /\.(jsx|js)$/,
 			exclude: /node_modules/,
 			use: [{
 				  loader: 'babel-loader',
@@ -24,36 +50,60 @@ module.exports = {
 				  }
 				}],
 			},
+			//scss
 			{
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
-            },
-            {
-                test: /\.(woff|woff2)$/,
-                loader: "url-loader?limit=10000&mimetype=application/font-woff&name=./fonts/[name].[ext]"
-            },
-            {
-                test: /\.ttf$/,
-                loader: "url-loader?limit=10000&mimetype=application/octet-stream&name=./fonts/[name].[ext]"
-            },
-            {
-                test: /\.eot$/,
-                loader: "url-loader?limit=10000&mimetype=application/octet-stream&name=./fonts/[name].[ext]"
-            },
-            {
-                test: /\.svg$/,
-                loader: "url-loader?limit=10000&mimetype=application/svg+xml&name=./fonts/[name].[ext]"
-            }
-	  ]
-	},
-	resolve: {extensions: ['.js', '.jsx', '.sass', '.css']
-    },
-	plugins: [
-        new webpack.NoErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'index.html'),
-            filename: path.join(__dirname, 'dist', 'index.html')
-        }),
-    ]
-};
+				test: /\.scss$/,
+				use: ExtractTextPlagin.extract({
+					use: [
 
+						{
+							loader: 'css-loader',
+							options: {
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'postcss-loader',
+							options: {
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true
+							},
+						},
+					],
+					fallback: 'style-loader',
+				})
+			},
+
+			//Img
+			{
+				test: /\.(png|gif|jpe?g)$/,
+				loaders:[{
+					loader:'file-loader',
+				options:{
+				name:'[path][name].[ext]',
+			},
+				},
+			'img-loader',
+		]
+			}
+		],
+	},
+
+	plugins: [
+		new webpack.ProvidePlugin({
+			$:'jquery',
+			jQuery:'jquery',
+			jquery:'jquery',
+			Popper: ['popper.js','default'],
+		}),
+		new ExtractTextPlagin(
+			'./css/[name].css'
+		),
+		new CleanWebpackPlugin(['dist']),
+	],
+}
