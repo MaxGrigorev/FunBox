@@ -5,6 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //plagins
 const ExtractTextPlagin = require("extract-text-webpack-plugin")
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const ImageminPlugin = require("imagemin-webpack-plugin")
