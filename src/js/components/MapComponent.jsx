@@ -23,11 +23,6 @@ export class MapContainer extends Component {
 		let polyline=[]
 
 		if (markers.length!==0){
-//			polyline = [
-//    { lat: 37.789411, lng: -122.422116 },
-//    { lat: 37.785757, lng: -122.421333 },
-//    { lat: 37.789352, lng: -122.415346 }
-//  ];
 			polyline=markers.map((item, index) => (item.position))
 		}
 
