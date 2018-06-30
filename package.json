@@ -7,7 +7,7 @@
 		"dev": "webpack --mode development",
 		"build": "webpack --mode production",
 		"watch": "webpack --watch --mode development",
-		"start": "webpack-dev-server --mode development --open"
+		"start": "webpack -w --mode development"
 	},
 	"keywords": [],
 	"author": "",
@@ -22,6 +22,7 @@
 		"babel-preset-es2015": "^6.24.1",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-0": "^6.24.1",
+		"browser-sync": "^2.24.5",
 		"browser-sync-webpack-plugin": "^2.2.2",
 		"clean-webpack-plugin": "^0.1.19",
 		"copy-webpack-plugin": "^4.5.2",

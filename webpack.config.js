@@ -27,15 +27,7 @@ module.exports = {
 	output: {
 		filename: 'js/[name].js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: '../',
 		library:'lib',
-	},
-
-	//dev-server
-	devServer: {
-		contentBase: './app',
-		//compress: true,
-		//port: 9000,
 	},
 
 	module: {
@@ -85,17 +77,26 @@ module.exports = {
 				test: /\.(png|gif|jpe?g)$/,
 				loaders:[{
 					loader:'file-loader',
-				options:{
-				name:'[path][name].[ext]',
-			},
-				},
-			'img-loader',
-		]
+					options:{name:'[path][name].[ext]',},
+					},
+				'img-loader',
+				]
 			}
 		],
 	},
 
 	plugins: [
+		new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            server: {
+                baseDir: ['dist']
+            }
+        }),
+		new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src', 'index.html'),
+            filename: path.join(__dirname, 'dist', 'index.html')
+        }),
 		new webpack.ProvidePlugin({
 			$:'jquery',
 			jQuery:'jquery',
