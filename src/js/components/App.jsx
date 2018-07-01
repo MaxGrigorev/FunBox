@@ -114,7 +114,7 @@ onDragEnd(result) {
 handleKeyPress = (event) => {
 
 	if (event.key === 'Enter') {
-		console.log('enter press here! ', this.state.items.length)
+		//console.log('enter press here! ', this.state.items.length)
 
 		let nextItem = {}
 		nextItem.id = this.state.count
@@ -157,7 +157,7 @@ onButtonClick = (butid) => (event) => {
 
 }
 
-//callback из MapComponent обновляем значение координат центра карты
+//Обработчик callbackа из MapComponent- обновляем значение координат центра карты
 centerChangeMap = (mapProps, map) => {
 	this.setState({
 		mapCenter: {
@@ -169,11 +169,12 @@ centerChangeMap = (mapProps, map) => {
 
 }
 
-//callback из MapComponent обновляем значение координат у перетаскиваемого на карте элемента
+//Обработчик callbackа из MapComponent обновляем значение координат у перетаскиваемого на карте элемента
 markerDraggen = (prop, marker) => {
 	//console.log("markerDraggen", {lat:marker.position.lat(),lng:marker.position.lng()})
 	//console.log("markerDraggen", prop)
 	//console.log("this.state.items[prop.id]", this.state.items)
+
 	let index = this.state.items.findIndex(el => el.id === prop.id);
 	this.state.items[index].position = {
 		lat: marker.position.lat(),
