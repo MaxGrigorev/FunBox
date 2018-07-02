@@ -188,4 +188,4 @@ markerDraggen = (prop, marker) => {
 }
 
 export default App
-
+export default getListStyle
