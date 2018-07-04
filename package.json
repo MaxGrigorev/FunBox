@@ -8,7 +8,7 @@
 		"build": "webpack --mode production",
 		"watch": "webpack --watch --mode development",
 		"start": "webpack -w --mode development",
-		"test:unit": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js 'C:/GB/Projects/FunBox/test-app/src/test.spec.js'"
+		"test:unit": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js '/src/*.spec.js'"
 	},
 	"keywords": [],
 	"author": "",
