@@ -6,7 +6,6 @@
 	"scripts": {
 		"dev": "webpack --mode development",
 		"build": "webpack --mode production",
-		"watch": "webpack --watch --mode development",
 		"start": "webpack -w --mode development"
 	},
 	"keywords": [],
